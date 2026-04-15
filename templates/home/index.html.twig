@@ -1,0 +1,207 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}E-Learning — Apprends en ligne{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .hero {
+        background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+        color: white;
+        padding: 100px 0;
+    }
+    .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    .stat-card {
+        border: none;
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #0d6efd;
+    }
+    .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    .step-circle {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #0d6efd;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+    }
+    .cta-section {
+        background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+        color: white;
+        padding: 80px 0;
+        border-radius: 24px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+{# HERO SECTION #}
+<div class="hero rounded-4 mb-5">
+    <div class="container text-center">
+        <h1 class="display-3 fw-bold mb-4">
+            🎓 Apprends. Progresse. Réussis.
+        </h1>
+        <p class="lead fs-4 mb-5 opacity-75">
+            La plateforme e-learning qui te permet d'apprendre à ton rythme,<br>
+            avec des cours de qualité créés par des experts.
+        </p>
+        {% if not app.user %}
+            <a href="{{ path('app_register') }}" class="btn btn-light btn-lg me-3 px-5 py-3 fw-bold">
+                🚀 Commencer gratuitement
+            </a>
+            <a href="{{ path('app_login') }}" class="btn btn-outline-light btn-lg px-5 py-3">
+                🔑 Se connecter
+            </a>
+        {% else %}
+            <a href="{{ path('app_course_list') }}" class="btn btn-light btn-lg px-5 py-3 fw-bold">
+                📚 Voir les cours
+            </a>
+        {% endif %}
+    </div>
+</div>
+
+{# STATS SECTION #}
+<div class="container mb-5">
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="stat-card bg-white">
+                <div class="stat-number">100+</div>
+                <div class="text-muted">Cours disponibles</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card bg-white">
+                <div class="stat-number">500+</div>
+                <div class="text-muted">Étudiants inscrits</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card bg-white">
+                <div class="stat-number">50+</div>
+                <div class="text-muted">Instructeurs experts</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card bg-white">
+                <div class="stat-number">98%</div>
+                <div class="text-muted">Satisfaction étudiants</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# FEATURES SECTION #}
+<div class="container mb-5">
+    <div class="text-center mb-5">
+        <h2 class="section-title">Pourquoi choisir E-Learning ?</h2>
+        <p class="text-muted fs-5">Tout ce dont tu as besoin pour apprendre efficacement</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100 p-4 text-center">
+                <div class="feature-icon">📚</div>
+                <h4 class="fw-bold">Cours de qualité</h4>
+                <p class="text-muted">Des cours créés par des experts dans leur domaine, avec du contenu clair et structuré.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100 p-4 text-center">
+                <div class="feature-icon">🎯</div>
+                <h4 class="fw-bold">Quiz interactifs</h4>
+                <p class="text-muted">Teste tes connaissances avec des quiz à la fin de chaque cours et suis ta progression.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100 p-4 text-center">
+                <div class="feature-icon">⏱️</div>
+                <h4 class="fw-bold">À ton rythme</h4>
+                <p class="text-muted">Apprends quand tu veux, où tu veux. Reviens sur les leçons autant de fois que nécessaire.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100 p-4 text-center">
+                <div class="feature-icon">👨‍🏫</div>
+                <h4 class="fw-bold">Instructeurs experts</h4>
+                <p class="text-muted">Apprends avec des professionnels passionnés qui partagent leur expérience réelle.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100 p-4 text-center">
+                <div class="feature-icon">💰</div>
+                <h4 class="fw-bold">Prix abordables</h4>
+                <p class="text-muted">Des formations de qualité à des prix accessibles pour tous les budgets.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100 p-4 text-center">
+                <div class="feature-icon">🏆</div>
+                <h4 class="fw-bold">Certifications</h4>
+                <p class="text-muted">Obtiens une attestation de réussite après avoir complété tes cours avec succès.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# HOW IT WORKS SECTION #}
+<div class="bg-light rounded-4 py-5 mb-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Comment ça marche ?</h2>
+            <p class="text-muted fs-5">Commence à apprendre en 3 étapes simples</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4 text-center">
+                <div class="step-circle">1</div>
+                <h5 class="fw-bold">Crée ton compte</h5>
+                <p class="text-muted">Inscris-toi gratuitement en quelques secondes avec ton email.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="step-circle">2</div>
+                <h5 class="fw-bold">Choisis un cours</h5>
+                <p class="text-muted">Parcours notre catalogue et inscris-toi au cours qui t'intéresse.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="step-circle">3</div>
+                <h5 class="fw-bold">Apprends et progresse</h5>
+                <p class="text-muted">Suis les leçons, fais les quiz et valide tes compétences.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# CTA SECTION #}
+{% if not app.user %}
+<div class="container mb-5">
+    <div class="cta-section text-center px-4">
+        <h2 class="display-6 fw-bold mb-3">Prêt à commencer ton apprentissage ?</h2>
+        <p class="fs-5 opacity-75 mb-4">Rejoins des milliers d'étudiants qui apprennent chaque jour sur E-Learning.</p>
+        <a href="{{ path('app_register') }}" class="btn btn-light btn-lg px-5 py-3 fw-bold me-3">
+            🚀 S'inscrire gratuitement
+        </a>
+        <a href="{{ path('app_course_list') }}" class="btn btn-outline-light btn-lg px-5 py-3">
+            📚 Voir les cours
+        </a>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

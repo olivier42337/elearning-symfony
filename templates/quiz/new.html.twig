@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un quiz{% endblock %}
+
+{% block body %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-body p-5">
+                <h1 class="text-center mb-4">❓ Créer un quiz</h1>
+                <p class="text-center text-muted">Pour le cours : <strong>{{ course.title }}</strong></p>
+
+                <form method="POST">
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Titre du quiz</label>
+                        <input type="text" name="title" class="form-control" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Description</label>
+                        <textarea name="description" class="form-control" rows="3" required></textarea>
+                    </div>
+
+                    <hr>
+                    <h4 class="mb-3">📝 Questions</h4>
+
+                    <div id="questions-container">
+                        <div class="card mb-4 p-3 border-primary">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Question 1</label>
+                                <input type="text" name="questions[0][content]" class="form-control" required placeholder="Tapez votre question ici">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">Réponses</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-text">
+                                        <input type="radio" name="questions[0][correct]" value="0" required>
+                                    </div>
+                                    <input type="text" name="questions[0][answers][]" class="form-control" placeholder="Réponse A" required>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-text">
+                                        <input type="radio" name="questions[0][correct]" value="1">
+                                    </div>
+                                    <input type="text" name="questions[0][answers][]" class="form-control" placeholder="Réponse B" required>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-text">
+                                        <input type="radio" name="questions[0][correct]" value="2">
+                                    </div>
+                                    <input type="text" name="questions[0][answers][]" class="form-control" placeholder="Réponse C" required>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-text">
+                                        <input type="radio" name="questions[0][correct]" value="3">
+                                    </div>
+                                    <input type="text" name="questions[0][answers][]" class="form-control" placeholder="Réponse D" required>
+                                </div>
+                            </div>
+                            <small class="text-muted">🔘 Sélectionne le bouton radio à côté de la bonne réponse</small>
+                        </div>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            ✅ Créer le quiz
+                        </button>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <a href="{{ path('app_instructor_courses') }}">← Retour à mes cours</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

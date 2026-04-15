@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ lesson.title }}{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+
+            <div class="card shadow border-0">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">📖 {{ lesson.title }}</h4>
+                    <span class="badge bg-light text-primary">⏱ {{ lesson.duration }} min</span>
+                </div>
+                <div class="card-body p-5">
+                    <div class="lesson-content" style="font-size: 1.1rem; line-height: 1.8;">
+                        {{ lesson.content|nl2br }}
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a href="{{ path('app_lesson_list', {id: lesson.course.id}) }}" class="btn btn-outline-primary">
+                        ← Retour aux leçons
+                    </a>
+                    <span class="text-muted">Leçon {{ lesson.position }} — {{ lesson.course.title }}</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

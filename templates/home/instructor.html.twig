@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord Professeur{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            👨‍🏫 Bonjour {{ user.firstName }} !
+        </h1>
+        <p class="lead">Bienvenue sur ton tableau de bord professeur.</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card shadow text-center p-4">
+            <h2>📚</h2>
+            <h4>Mes cours</h4>
+            <p>Gère tous les cours que tu as créés</p>
+            <a href="{{ path('app_instructor_courses') }}" class="btn btn-primary">Voir mes cours</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow text-center p-4">
+            <h2>➕</h2>
+            <h4>Créer un cours</h4>
+            <p>Crée un nouveau cours pour tes étudiants</p>
+           <a href="{{ path('app_course_new') }}" class="btn btn-success">Créer un cours</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow text-center p-4">
+            <h2>👨‍🎓</h2>
+            <h4>Mes étudiants</h4>
+            <p>Vois les étudiants inscrits à tes cours</p>
+            <a href="#" class="btn btn-primary">Mes étudiants</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

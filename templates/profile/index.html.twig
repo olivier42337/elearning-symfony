@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">👤 Mon Profil</h4>
+                </div>
+                <div class="card-body p-4">
+
+                    <div class="text-center mb-4">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                             style="width:80px; height:80px; font-size:2rem;">
+                            {{ app.user.firstName|first|upper }}{{ app.user.lastName|first|upper }}
+                        </div>
+                        <h5 class="mb-0">{{ app.user.firstName }} {{ app.user.lastName }}</h5>
+                        <small class="text-muted">{{ app.user.email }}</small>
+                    </div>
+
+                    {{ form_start(form) }}
+
+                    <div class="mb-3">
+                        {{ form_label(form.firstName) }}
+                        {{ form_widget(form.firstName) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(form.lastName) }}
+                        {{ form_widget(form.lastName) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                    </div>
+
+                    <hr>
+                    <p class="text-muted small">Laisse vide si tu ne veux pas changer ton mot de passe.</p>
+
+                    <div class="mb-3">
+                        {{ form_label(form.plainPassword.first) }}
+                        {{ form_widget(form.plainPassword.first) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(form.plainPassword.second) }}
+                        {{ form_widget(form.plainPassword.second) }}
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            💾 Sauvegarder les modifications
+                        </button>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultats du quiz{% endblock %}
+
+{% block body %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-body p-5">
+                <h1 class="text-center mb-2">🏆 Résultats</h1>
+                <h4 class="text-center text-muted mb-4">{{ quiz.title }}</h4>
+
+                <div class="text-center mb-4">
+                    {% if score == total %}
+                        <div class="alert alert-success">
+                            🎉 Parfait ! Tu as eu {{ score }}/{{ total }}
+                        </div>
+                    {% elseif score >= total / 2 %}
+                        <div class="alert alert-warning">
+                            👍 Bien ! Tu as eu {{ score }}/{{ total }}
+                        </div>
+                    {% else %}
+                        <div class="alert alert-danger">
+                            😢 Tu as eu {{ score }}/{{ total }}. Révise et réessaie !
+                        </div>
+                    {% endif %}
+                </div>
+
+                <h5 class="mb-3">📝 Détail des réponses :</h5>
+
+                {% for result in results %}
+                    <div class="card mb-3 {% if result.isCorrect %}border-success{% else %}border-danger{% endif %}">
+                        <div class="card-body">
+                            <h6 class="fw-bold">
+                                {% if result.isCorrect %}
+                                    ✅
+                                {% else %}
+                                    ❌
+                                {% endif %}
+                                {{ result.question.content }}
+                            </h6>
+                            {% for answer in result.question.answers %}
+                                <p class="mb-1
+                                    {% if answer.isCorrect %}text-success fw-bold{% endif %}
+                                    {% if answer.id == result.selectedId and not answer.isCorrect %}text-danger{% endif %}">
+                                    {% if answer.isCorrect %}
+                                        ✅
+                                    {% elseif answer.id == result.selectedId %}
+                                        ❌
+                                    {% else %}
+                                        ◦
+                                    {% endif %}
+                                    {{ answer.content }}
+                                </p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <div class="text-center mt-4">
+                    <a href="{{ path('app_course_list') }}" class="btn btn-primary">
+                        ← Retour aux cours
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

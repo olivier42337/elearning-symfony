@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord Étudiant{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            👨‍🎓 Bonjour {{ user.firstName }} !
+        </h1>
+        <p class="lead">Bienvenue sur ton tableau de bord étudiant.</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card shadow text-center p-4">
+            <h2>🔍</h2>
+            <h4>Explorer</h4>
+            <p>Découvre de nouveaux cours disponibles</p>
+            <a href="{{ path('app_course_list') }}" class="btn btn-primary">Explorer</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow text-center p-4">
+            <h2>📚</h2>
+            <h4>Mes cours</h4>
+            <p>Tu es inscrit à {{ enrollments|length }} cours</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow text-center p-4">
+            <h2>🏆</h2>
+            <h4>Ma progression</h4>
+            <p>Suis ta progression dans tes cours</p>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <h2>📚 Mes cours inscrits</h2>
+        <hr>
+    </div>
+</div>
+
+{% if enrollments is empty %}
+    <div class="alert alert-info">
+        Tu n'es inscrit à aucun cours pour le moment.
+        <a href="{{ path('app_course_list') }}">Explore les cours disponibles !</a>
+    </div>
+{% else %}
+    <div class="row">
+        {% for enrollment in enrollments %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100">
+                    <div class="card-body">
+                        <h4 class="card-title">📖 {{ enrollment.course.title }}</h4>
+                        <p class="card-text">{{ enrollment.course.description }}</p>
+                        <p class="text-muted">
+                            👨‍🏫 {{ enrollment.course.instructor.firstName }}
+                        </p>
+                        <div class="progress mt-2">
+                            <div class="progress-bar" style="width: {{ enrollment.progress }}%">
+                                {{ enrollment.progress }}%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes cours{% endblock %}
+
+{% block body %}
+
+<div class="row mb-4">
+    <div class="col-8">
+        <h1>📚 Mes cours</h1>
+        <p class="lead">Gère tous les cours que tu as créés</p>
+    </div>
+    <div class="col-4 text-end">
+        <a href="{{ path('app_course_new') }}" class="btn btn-success btn-lg">
+            ➕ Créer un cours
+        </a>
+    </div>
+</div>
+
+{% if courses is empty %}
+    <div class="alert alert-info">
+        Tu n'as pas encore créé de cours.
+        <a href="{{ path('app_course_new') }}">Crée ton premier cours !</a>
+    </div>
+{% else %}
+    <div class="row">
+        {% for course in courses %}
+            <div class="col-md-6 mb-4">
+                <div class="card shadow h-100">
+                    <div class="card-body">
+                        <h4 class="card-title">📖 {{ course.title }}</h4>
+                        <p class="card-text">{{ course.description }}</p>
+                        <p class="fw-bold text-primary">💰 {{ course.price }} €</p>
+                        <p class="text-muted">
+                            👨‍🎓 {{ course.enrollments|length }} étudiant(s) inscrit(s)
+                        </p>
+                    </div>
+                    <div class="card-footer d-flex gap-2 flex-wrap">
+    <a href="{{ path('app_course_edit', {'id': course.id}) }}" class="btn btn-warning w-100">
+        ✏️ Modifier
+    </a>
+    <a href="{{ path('app_lesson_new', {'id': course.id}) }}" class="btn btn-success w-100">
+        📝 Ajouter une leçon
+    </a>
+    <a href="{{ path('app_quiz_new', {'id': course.id}) }}" class="btn btn-info w-100">
+        ❓ Créer un quiz
+    </a>
+    <a href="{{ path('app_course_delete', {'id': course.id}) }}" class="btn btn-danger w-100"
+       onclick="return confirm('Es-tu sûr de vouloir supprimer ce cours ?')">
+        🗑️ Supprimer
+    </a>
+</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% endblock %}

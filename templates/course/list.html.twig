@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des cours{% endblock %}
+
+{% block body %}
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h1>📚 Tous les cours</h1>
+        <p class="lead">Découvre tous les cours disponibles</p>
+    </div>
+</div>
+
+{% if courses is empty %}
+    <div class="alert alert-info">
+        Aucun cours disponible pour le moment.
+    </div>
+{% else %}
+    <div class="row">
+        {% for course in courses %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100">
+                    <div class="card-body">
+                        <h4 class="card-title">📖 {{ course.title }}</h4>
+                        <p class="card-text">{{ course.description }}</p>
+                        <p class="text-muted">
+                            👨‍🏫 {{ course.instructor.firstName }} {{ course.instructor.lastName }}
+                        </p>
+                        <p class="fw-bold text-primary">
+                            💰 {{ course.price }} €
+                        </p>
+                    </div>
+                    <div class="card-footer d-flex flex-column gap-2">
+    <a href="{{ path('app_course_enroll', {'id': course.id}) }}" class="btn btn-primary w-100">
+        📝 S'inscrire au cours
+    </a>
+    <a href="{{ path('app_lesson_list', {'id': course.id}) }}" class="btn btn-success w-100">
+        📚 Voir les leçons
+    </a>
+    {% if course.quizzes|length > 0 %}
+        {% for quiz in course.quizzes %}
+            <a href="{{ path('app_quiz_show', {'id': quiz.id}) }}" class="btn btn-info w-100">
+                ❓ {{ quiz.title }}
+            </a>
+        {% endfor %}
+    {% endif %}
+</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% endblock %}

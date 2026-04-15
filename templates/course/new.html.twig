@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un cours{% endblock %}
+
+{% block body %}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-7">
+        <div class="card shadow">
+            <div class="card-body p-5">
+                <h1 class="text-center mb-4">➕ Créer un nouveau cours</h1>
+
+                {{ form_start(form) }}
+
+                    <div class="mb-3">
+                        {{ form_label(form.title, 'Titre du cours', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(form.price, 'Prix', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            ➕ Créer le cours
+                        </button>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <a href="{{ path('app_home') }}">← Retour au tableau de bord</a>
+                    </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
